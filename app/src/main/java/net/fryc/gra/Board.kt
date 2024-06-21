@@ -3,7 +3,7 @@ package net.fryc.gra
 import androidx.compose.ui.graphics.Color
 import kotlin.random.Random
 
-class Board(val size : Int) {
+class Board(val size : Int, val difficulty: Difficulty) {
 
     val fields = ArrayList<Field>();
     var redFieldsCount = 0;
@@ -29,7 +29,7 @@ class Board(val size : Int) {
     }
 
     private fun createBlackField() : Field {
-        return Field(0,0, Color.Black,-1, this);
+        return Field(0,0, Color.Transparent,-1, this);
     }
 
     private fun createRandomNonConflictingField() : Field {
@@ -60,7 +60,7 @@ class Board(val size : Int) {
             };
             2 -> {
                 blueFieldsCount++;
-                return Color.Blue
+                return Color.Cyan
             };
             3 -> {
                 magentaFieldsCount++;
@@ -108,4 +108,49 @@ class Board(val size : Int) {
 
         return null;
     }
+
+    /**
+     * Should be called only when black field is the last field (is in right-bottom corner)
+     */
+    fun checkWin(): Boolean {
+        var y = 0;
+        var x = 0;
+        while (y < this.size) {
+            var previousColor = if(this.difficulty == Difficulty.EASY) Color.Unspecified else this.getRowColorForWin(y);
+            while (x < this.size) {
+                val field = this.getField(x, y);
+                if (field != null) {
+                    if(field.value < 0){
+                        return true;
+                    }
+                    if (previousColor == Color.Unspecified) {
+                        previousColor = field.color;
+                    }
+                    else if (previousColor != field.color){
+                        return false;
+                    }
+
+                }
+
+                x++;
+            }
+
+            x = 0;
+            y++;
+        }
+
+        return true;
+    }
+
+    private fun getRowColorForWin(y : Int) : Color {
+        return when(y){
+            0 -> Color.Red;
+            1 -> Color.Green;
+            2 -> Color.Cyan;
+            3 -> Color.Magenta;
+            4 -> Color.DarkGray;
+            else -> Color.Yellow;
+        }
+    }
+
 }
