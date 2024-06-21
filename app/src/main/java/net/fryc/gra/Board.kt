@@ -33,7 +33,7 @@ class Board(val size : Int, val difficulty: Difficulty) {
     }
 
     private fun createRandomNonConflictingField() : Field {
-        val field = Field(Random.nextInt(0, this.size), Random.nextInt(0, this.size), this.getRandomNonConflictingColor(), Random.nextInt(1, 72), this);
+        val field = Field(Random.nextInt(0, this.size), Random.nextInt(0, this.size), this.getRandomNonConflictingColor(), Random.nextInt(1, 100), this);
 
         while(field.hasSamePositionAsOtherField()){
             field.x = Random.nextInt(0, this.size);
@@ -116,7 +116,8 @@ class Board(val size : Int, val difficulty: Difficulty) {
         var y = 0;
         var x = 0;
         while (y < this.size) {
-            var previousColor = if(this.difficulty == Difficulty.EASY) Color.Unspecified else this.getRowColorForWin(y);
+            var previousColor = if(this.difficulty == Difficulty.EASY || this.difficulty == Difficulty.HARD) Color.Unspecified else this.getRowColorForWin(y);
+            var previousValue = if(this.difficulty == Difficulty.HARD || this.difficulty == Difficulty.VERY_HARD) 0 else -1;
             while (x < this.size) {
                 val field = this.getField(x, y);
                 if (field != null) {
@@ -128,6 +129,14 @@ class Board(val size : Int, val difficulty: Difficulty) {
                     }
                     else if (previousColor != field.color){
                         return false;
+                    }
+                    else if(previousValue > -1){
+                        if(field.value < previousValue){
+                            return false;
+                        }
+                        else {
+                            previousValue = field.value;
+                        }
                     }
 
                 }

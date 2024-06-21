@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
 
-        startGame(4,Difficulty.MEDIUM, this);
+        startGame(4,Difficulty.EASY, this);
     }
 
 }
