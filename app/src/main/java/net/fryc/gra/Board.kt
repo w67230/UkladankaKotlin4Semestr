@@ -6,6 +6,12 @@ import kotlin.random.Random
 class Board(val size : Int) {
 
     val fields = ArrayList<Field>();
+    var redFieldsCount = 0;
+    var greenFieldsCount = 0;
+    var blueFieldsCount = 0;
+    var magentaFieldsCount = 0;
+    var grayFieldsCount = 0;
+    var yellowFieldsCount = 0;
 
     init{
         this.createFields();
@@ -38,13 +44,48 @@ class Board(val size : Int) {
     }
 
     private fun getRandomNonConflictingColor() : Color {
+        var number : Int;
+        do{
+            number = Random.nextInt(0,this.size);
+        }while(!this.isColorAvailable(number));
 
-        // TODO
-
-        if(Random.nextBoolean()){
-            return Color.Red;
+        when(number){
+            0 -> {
+                redFieldsCount++;
+                return Color.Red
+            };
+            1 -> {
+                greenFieldsCount++;
+                return Color.Green
+            };
+            2 -> {
+                blueFieldsCount++;
+                return Color.Blue
+            };
+            3 -> {
+                magentaFieldsCount++;
+                return Color.Magenta
+            };
+            4 -> {
+                grayFieldsCount++;
+                return Color.DarkGray
+            };
+            else -> {
+                yellowFieldsCount++;
+                return Color.Yellow
+            };
         }
-        return Color.Gray;
+    }
+
+    private fun isColorAvailable(number : Int) : Boolean {
+        return when(number){
+            0 -> redFieldsCount < this.size;
+            1 -> greenFieldsCount < this.size;
+            2 -> blueFieldsCount < this.size;
+            3 -> if(this.size > 4) magentaFieldsCount < this.size else magentaFieldsCount < this.size-1;
+            4 -> if(this.size > 5) grayFieldsCount < this.size else grayFieldsCount < this.size-1;
+            else -> yellowFieldsCount < this.size-1;
+        }
     }
 
     fun getBlackField() : Field {
