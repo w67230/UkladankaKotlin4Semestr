@@ -2,6 +2,9 @@ package net.fryc.gra
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.DraggableState
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -13,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import java.util.logging.Logger
 import kotlin.math.abs
 
 
@@ -21,23 +25,50 @@ class Field(var y: Int, var x : Int, val color : Color, val value : Int, val boa
     @Composable
     fun drawBox(activity: MainActivity){
         Box(Modifier.height((90-this.board.size*5).dp).width((90-this.board.size*5).dp).padding(5.dp, 5.dp).background(this.color).clickable {
-            val blackField = this.board.getBlackField();
-            if(this.isNextToField(blackField)){
-                var tempX = this.x;
-                var tempY = this.y;
-                this.x = blackField.x;
-                this.y = blackField.y;
-                blackField.x = tempX;
-                blackField.y = tempY;
-
-                redraw(this.board, activity);
+            if(this.canMove()){
+                this.onClickOrDrag(activity);
             }
-
-        }) {
+        }.draggable(DraggableState {
+            if(this.canMoveHorizontally(it)){
+                this.onClickOrDrag(activity);
+            }
+        }, Orientation.Horizontal).draggable(DraggableState {
+            if(this.canMoveVertically(it)){
+                this.onClickOrDrag(activity);
+            }
+        }, Orientation.Vertical)) {
             if(this@Field.value > 0 && this@Field.board.difficulty > Difficulty.NORMAL){
                 Text(text = this@Field.value.toString(), modifier = Modifier.align(Alignment.Center), fontWeight = FontWeight.Bold);
             }
         }
+    }
+
+    fun canMoveHorizontally(dragFloat: Float, field: Field = this.board.getBlackField()) : Boolean {
+        if(this.isNextToField(field)){
+            return (field.x-this.x > 0 && dragFloat > 0) || (field.x-this.x < 0 && dragFloat < 0);
+        }
+        return false;
+    }
+
+    fun canMoveVertically(dragFloat: Float, field: Field = this.board.getBlackField()) : Boolean {
+        if(this.isNextToField(field)){
+            return (field.y-this.y < 0 && dragFloat < 0) || (field.y-this.y > 0 && dragFloat > 0);
+        }
+        return false;
+    }
+    fun canMove(field: Field = this.board.getBlackField()) : Boolean {
+        return this.isNextToField(field);
+    }
+
+    fun onClickOrDrag(activity: MainActivity, field: Field = this.board.getBlackField()){
+        var tempX = this.x;
+        var tempY = this.y;
+        this.x = field.x;
+        this.y = field.y;
+        field.x = tempX;
+        field.y = tempY;
+
+        redraw(this.board, activity);
     }
 
     fun isNextToField(field: Field) : Boolean {

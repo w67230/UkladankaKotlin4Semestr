@@ -60,22 +60,21 @@ fun menu(activity: MainActivity){
                 Text(text = "Start Game");
             }
         }
-
         Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
             Button(enabled = size != 4, onClick = {
                 size = 4;
             }) {
-                Text(text = "4");
+                Text(text = "4x4");
             }
             Button(enabled = size != 5, onClick = {
                 size = 5;
             }) {
-                Text(text = "5");
+                Text(text = "5x5");
             }
             Button(enabled = size != 6, onClick = {
                 size = 6;
             }) {
-                Text(text = "6");
+                Text(text = "6x6");
             }
         }
 
@@ -103,6 +102,7 @@ fun menu(activity: MainActivity){
         }
 
     }
+
 }
 
 
@@ -153,6 +153,14 @@ fun draw(board : Board, activity: MainActivity, modifier: Modifier = Modifier){
                 }
             }
         }
+
+        Spacer(modifier = Modifier.size(90.dp));
+        Button(onClick = {
+            startMenu(activity);
+        }) {
+            Text(text = "Menu Główne");
+        }
     }
+
 
 }
