@@ -1,4 +1,4 @@
-package net.fryc.gra
+package net.fryc.gra.board
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -16,7 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import java.util.logging.Logger
+import net.fryc.gra.MainActivity
+import net.fryc.gra.redraw
 import kotlin.math.abs
 
 

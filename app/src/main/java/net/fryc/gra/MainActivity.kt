@@ -1,5 +1,6 @@
 package net.fryc.gra
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,13 +22,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import net.fryc.gra.board.Board
+import net.fryc.gra.board.Difficulty
 import net.fryc.gra.ui.theme.GraTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState);
         //startGame(4,Difficulty.EASY, this);
+        this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         startMenu(this);
     }
 
@@ -57,24 +62,24 @@ fun menu(activity: MainActivity){
             Button(onClick = {
                 startGame(size, difficulty, activity);
             }) {
-                Text(text = "Start Game");
+                Text(text = stringResource(R.string.start));
             }
         }
         Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
             Button(enabled = size != 4, onClick = {
                 size = 4;
             }) {
-                Text(text = "4x4");
+                Text(text = stringResource(R.string.size_4));
             }
             Button(enabled = size != 5, onClick = {
                 size = 5;
             }) {
-                Text(text = "5x5");
+                Text(text = stringResource(R.string.size_5));
             }
             Button(enabled = size != 6, onClick = {
                 size = 6;
             }) {
-                Text(text = "6x6");
+                Text(text = stringResource(R.string.size_6));
             }
         }
 
@@ -82,22 +87,22 @@ fun menu(activity: MainActivity){
             Button(enabled = difficulty != Difficulty.EASY, onClick = {
                 difficulty = Difficulty.EASY;
             }) {
-                Text(text = "Easy");
+                Text(text = stringResource(R.string.easy));
             }
             Button(enabled = difficulty != Difficulty.NORMAL, onClick = {
                 difficulty = Difficulty.NORMAL;
             }) {
-                Text(text = "Normal");
+                Text(text = stringResource(R.string.normal));
             }
             Button(enabled = difficulty != Difficulty.HARD, onClick = {
                 difficulty = Difficulty.HARD;
             }) {
-                Text(text = "Hard");
+                Text(text = stringResource(R.string.hard));
             }
             Button(enabled = difficulty != Difficulty.VERY_HARD, onClick = {
                 difficulty = Difficulty.VERY_HARD;
             }) {
-                Text(text = "Very hard");
+                Text(text = stringResource(R.string.v_hard));
             }
         }
 
@@ -148,7 +153,7 @@ fun draw(board : Board, activity: MainActivity, modifier: Modifier = Modifier){
             if(field.value < 0){
                 if(board.checkWin()){
                     Box {
-                        Text(text = "Wygrales");
+                        Text(text = stringResource(R.string.win));
                     }
                 }
             }
@@ -158,7 +163,7 @@ fun draw(board : Board, activity: MainActivity, modifier: Modifier = Modifier){
         Button(onClick = {
             startMenu(activity);
         }) {
-            Text(text = "Menu Główne");
+            Text(text = stringResource(R.string.menu));
         }
     }
 

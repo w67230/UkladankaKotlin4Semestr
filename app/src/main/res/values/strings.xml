@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">Gra</string>
+    <string name="app_name">Układanka</string>
+    <string name="win">Wygrałeś</string>
+    <string name="menu">Menu Główne</string>
+    <string name="start">Rozpocznij Grę</string>
+    <string name="size_4">4x4</string>
+    <string name="size_5">5x5</string>
+    <string name="size_6">6x6</string>
+    <string name="easy">Łatwy</string>
+    <string name="normal">Normalny</string>
+    <string name="hard">Trudny</string>
+    <string name="v_hard">Bardzo Trudny</string>
 </resources>

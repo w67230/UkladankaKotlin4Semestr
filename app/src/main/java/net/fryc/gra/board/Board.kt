@@ -1,4 +1,4 @@
-package net.fryc.gra
+package net.fryc.gra.board
 
 import androidx.compose.ui.graphics.Color
 import kotlin.random.Random
