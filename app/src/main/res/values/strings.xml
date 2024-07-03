@@ -10,4 +10,7 @@
     <string name="normal">Normalny</string>
     <string name="hard">Trudny</string>
     <string name="v_hard">Bardzo Trudny</string>
+    <string name="size_info">Rozmiar:</string>
+    <string name="difficulty_info">Trudność:</string>
+    <string name="h2p">Jak Grać?</string>
 </resources>
