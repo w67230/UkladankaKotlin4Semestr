@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import net.fryc.gra.MainActivity
-import net.fryc.gra.screen.redraw
+import net.fryc.gra.ui.redraw
 import kotlin.math.abs
 
 
@@ -39,7 +39,7 @@ class Field(var y: Int, var x : Int, val color : Color, val value : Int, val boa
             }
         }, Orientation.Vertical)) {
             if(this@Field.value > 0 && this@Field.board.difficulty > Difficulty.NORMAL){
-                Text(text = this@Field.value.toString(), modifier = Modifier.align(Alignment.Center), fontWeight = FontWeight.Bold);
+                Text(text = this@Field.value.toString(), modifier = Modifier.align(Alignment.Center), fontWeight = FontWeight.Bold, color = Color.Black);
             }
         }
     }

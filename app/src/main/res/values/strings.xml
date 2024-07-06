@@ -13,4 +13,16 @@
     <string name="size_info">Rozmiar:</string>
     <string name="difficulty_info">Trudność:</string>
     <string name="h2p">Jak Grać?</string>
+    <string name="cel_gry">Celem gry jest ułożenie kolorowych bloczków (poprzez klikanie lub przeciąganie ich) w taki sposób, aby w każdym wierszu znajdował się 1 kolor.</string>
+    <string name="cel_dodatkowo">Dodatkowo, puste pole musi się znaleźć na ostatnim miejscu (w prawym dolnym rogu).</string>
+    <string name="cel_poziomy">Na poziomach trudności wyższych niż łatwy pojawiają się dodatkowe ograniczenia dotyczące prawidłowego ułożenia.</string>
+    <string name="przyklad_latwy">Przykładowe prawidłowe ułożenie na łatwym poziomie trudności:</string>
+    <string name="tytul_cel">Cel gry</string>
+    <string name="tytul_poziomy">Poziomy trudności</string>
+    <string name="poziomy_info">Jeśli nie pamiętasz wymagań związanych z danym poziomem trudności, możesz podczas rozgrywki nacisnąć \"?\" znajdujący się nad planszą, aby otrzymać wyjaśnienie dotyczące wybranego poziomu trudności.</string>
+    <string name="normal_cel">Normalny - poszczególne wiersze muszą zawierać odpowiednie kolory:\npierwszy - czerwony\ndrugi  - zielony\ntrzeci - niebieski\nczwarty - fioletowy\npiąty - szary\nszósty - żółty</string>
+    <string name="hard_cel">Trudny - w kwadratach pojawiają się liczby: w poszczególnych wierszach muszą one być ustawione rosnąco.</string>
+    <string name="hard_cel_dalej">Na tym poziomie trudności kolejność kolorów w poszczególnych wierszach jest dowolna (jak na łatwym poziomie trudności).</string>
+    <string name="hard_cel_przyklad">Przykładowe prawidłowe ułożenie na trudnym poziomie trudności:</string>
+    <string name="v_hard_cel">Bardzo trudny - obowiązują ograniczenia z normalnego i trudnego poziomu trudności.</string>
 </resources>
