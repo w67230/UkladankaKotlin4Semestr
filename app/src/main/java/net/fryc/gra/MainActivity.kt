@@ -18,7 +18,6 @@ class MainActivity(var isInMenu : Boolean = true) : ComponentActivity() {
             super.onBackPressed();
         }
         else {
-            // TODO spytac sie czy na pewno chcesz wyjsc bo postepy sie nie zapisza
             startMenu(this);
         }
     }

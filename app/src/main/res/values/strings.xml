@@ -25,4 +25,5 @@
     <string name="hard_cel_dalej">Na tym poziomie trudności kolejność kolorów w poszczególnych wierszach jest dowolna (jak na łatwym poziomie trudności).</string>
     <string name="hard_cel_przyklad">Przykładowe prawidłowe ułożenie na trudnym poziomie trudności:</string>
     <string name="v_hard_cel">Obowiązują ograniczenia z normalnego i trudnego poziomu trudności.</string>
+    <string name="warning">Wszelkie postępy zostaną utracone.\nCzy na pewno chcesz wyjść do menu?\n</string>
 </resources>

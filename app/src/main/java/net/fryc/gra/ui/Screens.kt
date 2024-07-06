@@ -168,6 +168,9 @@ fun draw(board : Board, activity: MainActivity, modifier: Modifier = Modifier){
     var shouldShowHelp by remember {
         mutableStateOf(false);
     }
+    var shouldShowWarning by remember {
+        mutableStateOf(false);
+    }
     var y = 0;
     var x = 0;
     Column(modifier) {
@@ -196,7 +199,7 @@ fun draw(board : Board, activity: MainActivity, modifier: Modifier = Modifier){
         Spacer(modifier = Modifier.size(90.dp));
         Row(modifier = Modifier.align(Alignment.CenterHorizontally)){
             Button(onClick = {
-                startMenu(activity);
+                shouldShowWarning = true;
             }) {
                 Text(text = stringResource(R.string.menu));
             }
@@ -240,6 +243,26 @@ fun draw(board : Board, activity: MainActivity, modifier: Modifier = Modifier){
                         Difficulty.VERY_HARD -> stringResource(R.string.hard_cel) + "\n\n" + stringResource(R.string.normal_cel);
                     }
                 );
+            });
+        }
+        if(shouldShowWarning){
+            AlertDialog(onDismissRequest = {
+                shouldShowWarning = false;
+            }, confirmButton = {
+                TextButton(onClick = {
+                    shouldShowWarning = false;
+                    startMenu(activity);
+                }) {
+                    Text(text = "Tak");
+                }
+            }, text = {
+                Text(text = stringResource(R.string.warning));
+            }, dismissButton = {
+                TextButton(onClick = {
+                    shouldShowWarning = false;
+                }) {
+                    Text(text = "Nie");
+                }
             });
         }
     }
