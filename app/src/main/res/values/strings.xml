@@ -20,9 +20,9 @@
     <string name="tytul_cel">Cel gry</string>
     <string name="tytul_poziomy">Poziomy trudności</string>
     <string name="poziomy_info">Jeśli nie pamiętasz wymagań związanych z danym poziomem trudności, możesz podczas rozgrywki nacisnąć \"?\" znajdujący się nad planszą, aby otrzymać wyjaśnienie dotyczące wybranego poziomu trudności.</string>
-    <string name="normal_cel">Normalny - poszczególne wiersze muszą zawierać odpowiednie kolory:\npierwszy - czerwony\ndrugi  - zielony\ntrzeci - niebieski\nczwarty - fioletowy\npiąty - szary\nszósty - żółty</string>
-    <string name="hard_cel">Trudny - w kwadratach pojawiają się liczby: w poszczególnych wierszach muszą one być ustawione rosnąco.</string>
+    <string name="normal_cel">Poszczególne wiersze muszą zawierać odpowiednie kolory:\n\npierwszy - czerwony\ndrugi  - zielony\ntrzeci - niebieski\nczwarty - fioletowy\npiąty - szary\nszósty - żółty</string>
+    <string name="hard_cel">W kwadratach pojawiają się liczby: w poszczególnych wierszach muszą one być ustawione rosnąco.</string>
     <string name="hard_cel_dalej">Na tym poziomie trudności kolejność kolorów w poszczególnych wierszach jest dowolna (jak na łatwym poziomie trudności).</string>
     <string name="hard_cel_przyklad">Przykładowe prawidłowe ułożenie na trudnym poziomie trudności:</string>
-    <string name="v_hard_cel">Bardzo trudny - obowiązują ograniczenia z normalnego i trudnego poziomu trudności.</string>
+    <string name="v_hard_cel">Obowiązują ograniczenia z normalnego i trudnego poziomu trudności.</string>
 </resources>

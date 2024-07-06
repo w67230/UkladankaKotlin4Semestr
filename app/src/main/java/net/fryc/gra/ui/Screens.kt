@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
@@ -164,10 +165,21 @@ fun menu(activity: MainActivity){
 
 @Composable
 fun draw(board : Board, activity: MainActivity, modifier: Modifier = Modifier){
+    var shouldShowHelp by remember {
+        mutableStateOf(false);
+    }
     var y = 0;
     var x = 0;
     Column(modifier) {
-        Spacer(modifier = Modifier.size(100.dp));
+        Spacer(modifier = Modifier.size(50.dp));
+        Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+            IconButton(onClick = {
+                shouldShowHelp = true;
+            }) {
+                Text(text = "?", fontWeight = FontWeight.Bold, fontSize = 5.em);
+            }
+        }
+        Spacer(modifier = Modifier.size(30.dp));
         while(y < board.size){
             Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
                 while(x < board.size) {
@@ -209,6 +221,27 @@ fun draw(board : Board, activity: MainActivity, modifier: Modifier = Modifier){
                 }
             }
         }
+
+        if(shouldShowHelp){
+            AlertDialog(onDismissRequest = {
+                shouldShowHelp = false;
+            }, confirmButton = {
+                TextButton(onClick = {
+                    shouldShowHelp = false;
+                }) {
+                    Text(text = "Ok");
+                }
+            }, text = {
+                Text(text =
+                    when(board.difficulty){
+                        Difficulty.EASY -> stringResource(R.string.cel_gry) + "\n\n" + stringResource(R.string.cel_dodatkowo);
+                        Difficulty.NORMAL -> stringResource(R.string.normal_cel);
+                        Difficulty.HARD -> stringResource(R.string.hard_cel);
+                        Difficulty.VERY_HARD -> stringResource(R.string.hard_cel) + "\n\n" + stringResource(R.string.normal_cel);
+                    }
+                );
+            });
+        }
     }
 }
 
@@ -221,16 +254,16 @@ fun howToPlayScreen(activity: MainActivity){
             Text(text = stringResource(R.string.tytul_cel), fontWeight = FontWeight.Bold, fontSize = 6.em, modifier = Modifier.padding(bottom = 10.dp));
         }
         this.item {
-            Text(text = stringResource(R.string.cel_gry), modifier = Modifier.padding(bottom = 10.dp));
+            showSimpleText(resourceString = R.string.cel_gry);
         }
         this.item {
-            Text(text = stringResource(R.string.cel_dodatkowo), modifier = Modifier.padding(bottom = 10.dp));
+            showSimpleText(resourceString = R.string.cel_dodatkowo);
         }
         this.item {
-            Text(text = stringResource(R.string.cel_poziomy), modifier = Modifier.padding(bottom = 10.dp));
+            showSimpleText(resourceString = R.string.cel_poziomy);
         }
         this.item {
-            Text(text = stringResource(R.string.przyklad_latwy), modifier = Modifier.padding(bottom = 10.dp));
+            showSimpleText(resourceString = R.string.przyklad_latwy);
         }
         this.item {
             x=0;
@@ -266,21 +299,23 @@ fun howToPlayScreen(activity: MainActivity){
             Text(text = stringResource(R.string.tytul_poziomy), fontWeight = FontWeight.Bold, fontSize = 6.em, modifier = Modifier.padding(bottom = 10.dp));
         }
         this.item {
-            Text(text = stringResource(R.string.poziomy_info), modifier = Modifier.padding(bottom = 10.dp));
+            showSimpleText(resourceString = R.string.poziomy_info);
         }
         this.item {
             Spacer(modifier = Modifier.size(30.dp));
-            Text(text = stringResource(R.string.normal_cel), modifier = Modifier.padding(bottom = 10.dp));
+            showSimpleText(resourceString = R.string.normal);
+            showSimpleText(resourceString = R.string.normal_cel);
         }
         this.item {
             Spacer(modifier = Modifier.size(30.dp));
-            Text(text = stringResource(R.string.hard_cel), modifier = Modifier.padding(bottom = 10.dp));
+            showSimpleText(resourceString = R.string.hard);
+            showSimpleText(resourceString = R.string.hard_cel);
         }
         this.item {
-            Text(text = stringResource(R.string.hard_cel_dalej), modifier = Modifier.padding(bottom = 10.dp));
+            showSimpleText(resourceString = R.string.hard_cel_dalej);
         }
         this.item {
-            Text(text = stringResource(R.string.hard_cel_przyklad), modifier = Modifier.padding(bottom = 10.dp));
+            showSimpleText(resourceString = R.string.hard_cel_przyklad);
         }
         this.item {
             x=0;
@@ -317,7 +352,8 @@ fun howToPlayScreen(activity: MainActivity){
         }
         this.item {
             Spacer(modifier = Modifier.size(30.dp));
-            Text(text = stringResource(R.string.v_hard_cel), modifier = Modifier.padding(bottom = 10.dp));
+            showSimpleText(resourceString = R.string.v_hard);
+            showSimpleText(resourceString = R.string.v_hard_cel);
         }
         this.item {
             Button(onClick = {
@@ -327,5 +363,9 @@ fun howToPlayScreen(activity: MainActivity){
             }
         }
     }
+}
 
+@Composable
+fun showSimpleText(resourceString : Int){
+    Text(text = stringResource(resourceString), modifier = Modifier.padding(bottom = 10.dp));
 }
