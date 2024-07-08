@@ -12,6 +12,6 @@
             android:fillType="evenOdd"
             android:strokeWidth="4.05611"
             android:strokeLineCap="round"
-            android:pathData="M 0.0000016448269 0.36175358 H 210.179051645 V 297.36175358 H 0.0000016448269 V 0.36175358 Z" />
+            android:pathData="M 0.0000016448269 37.36175358 H 210.179051645 V 257.36175358 H 0.0000016448269 V 0.36175358 Z" />
     </group>
 </vector>
